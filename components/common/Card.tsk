@@ -1,23 +1,27 @@
-// Import the CardProps type from interfaces
+import React from 'react';
 import { CardProps } from '../../interfaces';
 
-// Define the Card component
-const Card = ({ title, description, imageUrl }: CardProps) => {
+const Card: React.FC<CardProps> = ({ 
+  title = 'Default Title', 
+  description = 'Default description', 
+  imageUrl 
+}) => {
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
-      {/* Show image if imageUrl exists */}
-      {imageUrl && <img className="w-full" src={imageUrl} alt={title} />}
+      {imageUrl && (
+        <img 
+          className="w-full h-48 object-cover" 
+          src={imageUrl} 
+          alt={title} 
+        />
+      )}
       
       <div className="px-6 py-4">
-        {/* Property title */}
         <div className="font-bold text-xl mb-2">{title}</div>
-        
-        {/* Property description */}
         <p className="text-gray-700 text-base">{description}</p>
       </div>
     </div>
   );
 };
 
-// Export so other files can use it
 export default Card;
